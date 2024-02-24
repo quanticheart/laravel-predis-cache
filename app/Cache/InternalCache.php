@@ -20,7 +20,7 @@ class InternalCache
      * @param string $key
      * @return mixed
      */
-    function redisGet(string $key): mixed
+    function get(string $key): mixed
     {
         return $this->cache->get($key);
     }
@@ -35,7 +35,7 @@ class InternalCache
      * @param int|null $expiration
      * @return bool $value
      */
-    function redisSet(string $key, $value = null, $expiration = null): bool
+    function set(string $key, $value = null, $expiration = null): bool
     {
         return $this->cache->set($key, $value, $expiration);
     }
@@ -47,7 +47,7 @@ class InternalCache
      * @param null $expiration
      * @return bool
      */
-    function redisExpire(string $key, $expiration = null): bool
+    function expire(string $key, $expiration = null): bool
     {
         return $this->cache->expire($key, $expiration);
     }
@@ -58,7 +58,7 @@ class InternalCache
      * @param $key array|string
      * @return array
      */
-    function redisDelete($key): array
+    function delete($key): array
     {
         return $this->cache->delete($key);
     }
@@ -69,7 +69,7 @@ class InternalCache
      * @param string $key
      * @return bool
      */
-    function redisExists(string $key): bool
+    function exists(string $key): bool
     {
         return $this->cache->exists($key);
     }
@@ -80,7 +80,7 @@ class InternalCache
      * @param string $key
      * @return bool
      */
-    function redisMissing(string $key): bool
+    function missing(string $key): bool
     {
         return $this->cache->missing($key);
     }
@@ -94,7 +94,7 @@ class InternalCache
      * @param int|null $expiration
      * @return bool
      */
-    function redisCacheView(string $key, string $view, array $data, int $expiration = null): bool
+    function cacheView(string $key, string $view, array $data, int $expiration = null): bool
     {
         return $this->cache->set($key, View::make($view, $data)->render(), $expiration);
     }
@@ -107,7 +107,7 @@ class InternalCache
      * @param int|null $expiration
      * @return int
      */
-    function redisIncrement(string $key, int $value = 1, int $expiration = null): int
+    function increment(string $key, int $value = 1, int $expiration = null): int
     {
         return $this->cache->increment($key, $value, $expiration);
     }
@@ -117,7 +117,7 @@ class InternalCache
      *
      * @return array
      */
-    function redisClearCache(): array
+    function clearCache(): array
     {
         return $this->cache->clear();
     }
@@ -130,8 +130,28 @@ class InternalCache
      * @param int|null $ttl
      * @return mixed
      */
-    function redisRemember(string $key, $callback, int $ttl = null): mixed
+    function remember(string $key, $callback, int $ttl = null): mixed
     {
         return $this->cache->remember($key, $callback, $ttl);
+    }
+
+    /**
+     * @param string $key
+     * @param $callback
+     * @return void
+     */
+    public function subscribe(string $key, $callback): void
+    {
+        $this->cache->subscribe($key, $callback);
+    }
+
+    /**
+     * @param string $key
+     * @param $value
+     * @return void
+     */
+    public function publish(string $key, $value): void
+    {
+        $this->cache->publish($key, $value);
     }
 }

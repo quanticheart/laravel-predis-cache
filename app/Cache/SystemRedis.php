@@ -244,4 +244,14 @@ class SystemRedis implements SystemInternalCache
     {
         return Redis::remember($key, $ttl ?? self::defaultTTL(), $callback);
     }
+
+    public function subscribe(string $key, $callback): void
+    {
+        Redis::subscribe([$key], $callback);
+    }
+
+    public function publish(string $key, $value): void
+    {
+        Redis::publish($key, json_encode($value));
+    }
 }

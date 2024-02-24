@@ -116,10 +116,28 @@ interface SystemInternalCache
      * Pass a $callback function to be stored in the Cache for an amount of time.
      *
      * @param string $key
-     * @param Closure $callback
+     * @param $callback
      * @param int|null $ttl
      * @return mixed
      */
     public function remember(string $key, $callback, int $ttl = null): mixed;
+
+
+    /**
+     * @param string $key
+     * @param $callback
+     */
+    public function subscribe(string $key, $callback);
+
+
+    /**
+     * @param string $key
+     * @param $value
+     */
+    public function publish(string $key, $value);
+
+
+
+
 
 }

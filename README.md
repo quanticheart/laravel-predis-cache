@@ -16,8 +16,12 @@
 - [Redis Documents](https://redis.io/docs/).
 - [Redis commands](https://redis.io/commands/).
 
-## Other
+## Pub / Seb
 
+- [pub-sub-in-laravel-in-depth-understanding](https://www.twilio.com/en-us/blog/pub-sub-in-laravel-in-depth-understanding)
+
+## Other
+- [How-to-Install-Redis-Caching-Engine-on-cPanel-server](https://manage.accuwebhosting.com/knowledgebase/4466/How-to-Install-Redis-Caching-Engine-on-cPanel-server.html)
 - [caching-api-endpoints-with-laravel](https://serversideup.net/caching-api-endpoints-with-laravel/).
 - [laravel-caching-redis](https://www.honeybadger.io/blog/laravel-caching-redis/).
 

@@ -21,10 +21,10 @@ class Controller extends BaseController
 
     function data()
     {
-        $data = $this->cache->redisGet("test");
+        $data = $this->cache->get("test");
         $redis = false;
         if (isset($data)) {
-            $this->cache->redisDelete("test");
+            $this->cache->delete("test");
             $redis = true;
         } else {
             // Generated @ codebeautify.org
@@ -39,7 +39,7 @@ class Controller extends BaseController
             }
             curl_close($ch);
 
-            $this->cache->redisSet("test", $data, 10);
+            $this->cache->set("test", $data, 10);
         }
 
         return response()->json(["redis" => $redis, "data" => $data]);

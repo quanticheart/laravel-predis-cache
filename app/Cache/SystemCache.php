@@ -245,4 +245,14 @@ class SystemCache implements SystemInternalCache
     {
         return Cache::remember($key, $ttl ?? self::defaultTTL(), $callback);
     }
+
+    public function subscribe(string $key, $callback): void
+    {
+        Cache::subscribe([$key], $callback);
+    }
+
+    public function publish(string $key, $value): void
+    {
+        Cache::publish($key, json_encode($value));
+    }
 }
